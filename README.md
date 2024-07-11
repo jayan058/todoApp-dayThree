@@ -24,7 +24,7 @@ docker run -p 8000:8000 jayanghimire/todo-backend-day3:latest
 
 - DELETE :http://localhost:8000/todos/deleteTodos/:id  for deleting the todo with the specified id. Send the access token you received while logging in.
 
-- PUT:http://localhost:8000/todos/updateTodos/:id for updating the todo with the specified id. Send in the access token received  while logging in. 
+- PUT:http://localhost:8000/todos/updateTodos/:id for updating the todo with the specified id. Send in the access token received  while logging in and also send the new name of your task as name and your new task status as isDone
      
 - POST :http://localhost:8000/login/token to obtain a new access token. Send the  refresh token you received while logging in.
 
