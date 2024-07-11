@@ -5,10 +5,10 @@ const todoRoute = express();
 
 todoRoute.get("/", authenticate, todosController.getAllTodos);
 
-todoRoute.post("/addTodos", authenticate, todosController.addATodo);
+todoRoute.post("/addTodos", authenticate, todosController.addTodo);
 
-todoRoute.put("/updateTodos/:id", authenticate, todosController.updateATodo);
+todoRoute.put("/updateTodos/:id", authenticate, todosController.updateTodo);
 
-todoRoute.delete("/deleteTodos/:id", authenticate, todosController.deleteATodo);
+todoRoute.delete("/deleteTodos/:id", authenticate, todosController.deleteTodo);
 
 export default todoRoute;

@@ -1,10 +1,10 @@
 import * as userModels from "../models/users";
 import ConflictError from "../error/conflictError";
-const bcrypt = require("bcrypt");
+import bcrypt from "bcrypt";
 import NotFoundError from "../error/notFoundError";
 import ValidationError from "../error/validationError";
 import { User } from "../interface/user";
-export async function createAUser(
+export async function createUser(
   name: string,
   password: string,
   email: string
@@ -12,7 +12,7 @@ export async function createAUser(
   if (!userModels.findAUser(email)) {
     try {
       const hashedPassword = await bcrypt.hash(password, 10); // 10 is the salt rounds
-      let data = userModels.createAUser(name, hashedPassword, email);
+      let data = userModels.createUser(name, hashedPassword, email);
       return data;
     } catch (error) {
       throw new ValidationError("Error creating user", " ");
@@ -21,7 +21,6 @@ export async function createAUser(
     throw new ConflictError("Email already taken");
   }
 }
-
 export async function findUserById(id: string) {
   let foundUser: User | undefined;
   foundUser = userModels.findUserById(id);
@@ -31,28 +30,25 @@ export async function findUserById(id: string) {
     throw new NotFoundError("No user with that id");
   }
 }
-
-export function seeAllUsers() {
-  let users = userModels.seeAllUsers();
+export function getUsers() {
+  let users = userModels.getUsers();
   if (users) {
     return users;
   } else {
     throw new NotFoundError("No users created to show");
   }
 }
-
-export function deleteAUser(id: string) {
+export function deleteUser(id: string) {
   let foundUser: User | undefined;
   foundUser = userModels.findUserById(id);
   if (foundUser) {
-    userModels.deleteAUser(foundUser);
+    userModels.deleteUser(foundUser);
     return "Successfully deleted user";
   } else {
     throw new NotFoundError("No user with that id");
   }
 }
-
-export async function updateAUser(email: string, password: string, id: string) {
+export async function updateUser(email: string, password: string, id: string) {
   let foundUser: userModels.users | undefined;
   foundUser = userModels.findUserById(id);
   if (foundUser) {
@@ -63,7 +59,7 @@ export async function updateAUser(email: string, password: string, id: string) {
       // Hash the password
       const hashedPassword = await bcrypt.hash(password, 10);
       // Update the user
-      let data = userModels.updateAUser(foundUser, email, hashedPassword);
+      let data = userModels.updateUser(foundUser, email, hashedPassword);
       return data;
     }
   } else {

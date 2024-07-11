@@ -8,28 +8,28 @@ userRoute.post(
   "/",
   userMiddleware.authenticate,
   userMiddleware.authorize(),
-  userController.createAUser
+  userController.createUser
 );
 
 userRoute.get(
   "/",
   userMiddleware.authenticate,
   userMiddleware.authorize(),
-  userController.seeAllUsers
+  userController.getUsers
 );
 
 userRoute.delete(
   "/:id",
   userMiddleware.authenticate,
   userMiddleware.authorize(),
-  userController.deleteAUser
+  userController.deleteUser
 );
 
 userRoute.put(
   "/:id",
   userMiddleware.authenticate,
   userMiddleware.authorize(),
-  userController.updateAUser
+  userController.updateUser
 );
 
 userRoute.get(

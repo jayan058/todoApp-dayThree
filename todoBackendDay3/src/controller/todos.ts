@@ -15,20 +15,20 @@ export function getAllTodos(
     next(error);
   }
 }
-export function addATodo(
+export function addTodo(
   req: AuthenticatedRequest,
   res: Response,
   next: NextFunction
 ) {
   try {
     const { body, user } = req;
-    let data = todoServices.addATodo(body, user);
+    let data = todoServices.addTodo(body, user);
     res.json(data);
   } catch (error) {
     next(error);
   }
 }
-export function updateATodo(
+export function updateTodo(
   req: AuthenticatedRequest,
   res: Response,
   next: NextFunction
@@ -37,13 +37,13 @@ export function updateATodo(
     const id = req.params.id;
     const { name, isDone } = req.body;
     const userId = req.user!.id;
-    const message = todoServices.updateATodo(id, name, isDone, userId, next);
+    const message = todoServices.updateTodo(id, name, isDone, userId, next);
     res.json({ message });
   } catch (error) {
     next(error);
   }
 }
-export function deleteATodo(
+export function deleteTodo(
   req: AuthenticatedRequest,
   res: Response,
   next: NextFunction
@@ -51,7 +51,7 @@ export function deleteATodo(
   try {
     const id = req.params.id;
     const userId = req.user!.id;
-    let message = todoServices.deleteATodo(id, userId, next);
+    let message = todoServices.deleteTodo(id, userId);
     res.json(message);
   } catch (error) {
     next(error);

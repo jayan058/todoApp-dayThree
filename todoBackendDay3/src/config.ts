@@ -4,8 +4,8 @@ const config = {
   port: process.env.PORT,
   jwt: {
     jwt_secret: process.env.JWT_SECRET || "my_secret_key",
-    accessTokenExpiryMS: "50s",
-    refreshTokenExpiryMS: "200s",
+    accessTokenExpiryMS: "30s",
+    refreshTokenExpiryMS: "50s",
   },
 };
 export default config;

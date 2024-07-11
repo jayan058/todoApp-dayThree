@@ -1,20 +1,18 @@
 import { NextFunction, Request, Response } from "express";
 import * as userServices from "../services/user";
-
-export async function createAUser(
+export async function createUser(
   req: Request,
   res: Response,
   next: NextFunction
 ) {
   try {
     const { name, password, email } = req.body;
-    const message = await userServices.createAUser(name, password, email);
+    const message = await userServices.createUser(name, password, email);
     res.json(message);
   } catch (error) {
     next(error);
   }
 }
-
 export async function fetchUserById(
   req: Request,
   res: Response,
@@ -28,35 +26,32 @@ export async function fetchUserById(
     next(error);
   }
 }
-
-export async function seeAllUsers(
+export async function getUsers(
   req: Request,
   res: Response,
   next: NextFunction
 ) {
   try {
-    const message = userServices.seeAllUsers();
+    const message = userServices.getUsers();
     res.json(message);
   } catch (error) {
     next(error);
   }
 }
-
-export async function deleteAUser(
+export async function deleteUser(
   req: Request,
   res: Response,
   next: NextFunction
 ) {
   try {
     const id = req.params.id;
-    const message = userServices.deleteAUser(id);
+    const message = userServices.deleteUser(id);
     res.json(message);
   } catch (error) {
     next(error);
   }
 }
-
-export async function updateAUser(
+export async function updateUser(
   req: Request,
   res: Response,
   next: NextFunction
@@ -64,7 +59,7 @@ export async function updateAUser(
   try {
     const id = req.params.id;
     const { email, password } = req.body;
-    const message = await userServices.updateAUser(email, password, id);
+    const message = await userServices.updateUser(email, password, id);
     res.json(message);
   } catch (error) {
     next(error);
